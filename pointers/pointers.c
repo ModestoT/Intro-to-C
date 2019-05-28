@@ -14,8 +14,16 @@
     printf("%s", buffer); // Prints "Hello!"
 */
 void string_copy(char *x, char *y)
-{
+{   
+    int index = 0;
 
+    while (*y != '\0'){
+        x[index] = *y;
+        y++;
+        index++;
+    }
+
+    x[index] = '\0';
 }
 
 /*
@@ -47,9 +55,11 @@ char *find_string(char *haystack, char *needle)
 #ifndef TESTING
 int main(void)
 {
+    char *string = "hello, world";
+    char empty[20];
     char *found_char = find_char("hello", 'e');
     char *found_string = find_string("world", "or");
-
+    string_copy(empty, string);
     printf("Found char: %s\n", found_char);
     printf("Found string: %s\n", found_string);
 

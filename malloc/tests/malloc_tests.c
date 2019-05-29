@@ -47,7 +47,7 @@ char *test_resize_memory()
     int new_length = url_length + path_length + 1; // +1 for the NUL terminator
     char *new_url = resize_memory(url, url_length, new_length);
     char *p = new_url + url_length;
-
+    printf("test: %s\n", new_url);
     while (*path != '\0') {
         *p = *path;
         p++;

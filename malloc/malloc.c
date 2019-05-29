@@ -77,7 +77,7 @@ void *resize_memory(void *ptr, int old_size, int new_size)
         temp[new_size-1] = '\0';
     }
 
-    ptr = temp;
+    return temp;
 }
 
 #ifndef TESTING

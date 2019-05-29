@@ -62,7 +62,8 @@ char *find_string(char *haystack, char *needle)
         if (haystack[j] == needle[i]){
             i++;
             j++;
-            temp = (char*)haystack + j - i;
+            // temp = (char*)haystack + j - i;
+            temp = &haystack[j-i];
         } else{
             j++;
             i = 0;

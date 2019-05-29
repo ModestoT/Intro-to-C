@@ -56,7 +56,24 @@ char *find_char(char *str, int c)
 */
 char *find_string(char *haystack, char *needle)
 {
+    int j = 0, i = 0;
+    char *temp;
+    while (haystack[j] != '\0' && needle[i] != '\0'){
+        if (haystack[j] == needle[i]){
+            i++;
+            j++;
+            temp = (char*)haystack + j - i;
+        } else{
+            j++;
+            i = 0;
+        }
+    }
 
+    if (needle[i] == '\0'){
+        return temp;
+    } else{
+        return NULL;
+    }
 }
 
 #ifndef TESTING

@@ -35,7 +35,14 @@ char *string_dup(char *src)
 */
 void mem_copy(void *dest, const void *src, int n)
 {
+    char *d = (char*)dest;
+    char *s = (char*)src;
+    
+    for (int i = 0; i < n; i++){
+        d[i] = s[i];
+    }
 
+    dest = d;
 }
 
 /*
@@ -62,19 +69,19 @@ int main(void)
 
     printf("Duplicated string: %s\n", dup);
 
-    // int numbers[] = {100, 55, 4, 98, 10, 18, 90, 95, 43, 11, 47, 67, 89, 42, 49, 79};
-    // int n = sizeof(numbers) / sizeof(numbers[0]);
-    // int *target = malloc(n * sizeof(int));
+    int numbers[] = {100, 55, 4, 98, 10, 18, 90, 95, 43, 11, 47, 67, 89, 42, 49, 79};
+    int n = sizeof(numbers) / sizeof(numbers[0]);
+    int *target = malloc(n * sizeof(int));
     
-    // mem_copy(target, numbers, n * sizeof(int));
+    mem_copy(target, numbers, n * sizeof(int));
 
-    // printf("Copied array: ");
+    printf("Copied array: ");
 
-    // for (int i = 0; i < n; i++) {
-    //     printf("%d ", target[i]);
-    // }
+    for (int i = 0; i < n; i++) {
+        printf("%d ", target[i]);
+    }
 
-    // printf("\n");
+    printf("\n");
 
     // char *url = string_dup("http://lambdaschool.com");
     // char *path = string_dup("/students/");

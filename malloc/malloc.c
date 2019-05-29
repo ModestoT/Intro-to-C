@@ -61,22 +61,30 @@ void *resize_memory(void *ptr, int old_size, int new_size)
     char *d = (char*)ptr;
     char *temp = malloc(new_size);
 
-    if (old_size > new_size){
+    // if (old_size > new_size){
 
-        for (int i = 0; i < new_size; i++){
+    //     for (int i = 0; i < new_size; i++){
+    //         temp[i] = d[i];
+    //     }
+
+    //     temp[new_size] = '\0';
+    // } else {
+
+    //     for (int i = 0; i < old_size; i++){
+    //         temp[i] = d[i];
+    //     }
+
+    //     temp[new_size-1] = '\0';
+    // }
+    for (int i = 0; i < old_size; i++){
             temp[i] = d[i];
-        }
-
-        temp[new_size] = '\0';
-    } else {
-
-        for (int i = 0; i < old_size; i++){
-            temp[i] = d[i];
-        }
-
-        temp[new_size-1] = '\0';
     }
 
+    if (old_size > new_size){
+        temp[new_size] = '\0';
+    } else {
+        temp[new_size-1] = '\0';
+    }
     return temp;
 }
 

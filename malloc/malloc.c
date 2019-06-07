@@ -12,7 +12,18 @@
 */
 char *string_dup(char *src)
 {
+    char *dup = malloc(string_length(src));
+    int index = 0;
 
+    while (*src != '\0'){
+        dup[index] = *src;
+        src++;
+        index++;
+    }
+
+    dup[index] = '\0';
+
+    return dup; 
 }
 
 /*
@@ -24,7 +35,14 @@ char *string_dup(char *src)
 */
 void mem_copy(void *dest, const void *src, int n)
 {
+    char *d = (char*)dest;
+    char *s = (char*)src;
+    
+    for (int i = 0; i < n; i++){
+        d[i] = s[i];
+    }
 
+    dest = d;
 }
 
 /*
@@ -40,7 +58,34 @@ void mem_copy(void *dest, const void *src, int n)
 */
 void *resize_memory(void *ptr, int old_size, int new_size)
 {
+    char *d = (char*)ptr;
+    char *temp = malloc(new_size);
 
+    // if (old_size > new_size){
+
+    //     for (int i = 0; i < new_size; i++){
+    //         temp[i] = d[i];
+    //     }
+
+    //     temp[new_size] = '\0';
+    // } else {
+
+    //     for (int i = 0; i < old_size; i++){
+    //         temp[i] = d[i];
+    //     }
+
+    //     temp[new_size-1] = '\0';
+    // }
+    for (int i = 0; i < old_size; i++){
+            temp[i] = d[i];
+    }
+
+    if (old_size > new_size){
+        temp[new_size] = '\0';
+    } else {
+        temp[new_size-1] = '\0';
+    }
+    return temp;
 }
 
 #ifndef TESTING
@@ -70,17 +115,21 @@ int main(void)
     int url_length = string_length(url);
     int path_length = string_length(path);
     
-    int new_length = url_length - 1 + path_length;
+    int new_length = url_length + path_length + 1;
     char *new_url = resize_memory(url, url_length, new_length);
     char *p = new_url + url_length;
 
+    printf("new: %s\n", new_url);
     while (*path != '\0') {
         *p = *path;
         p++;
         path++;
     }
-
     printf("Full path string: %s\n", new_url);
+
+    char *new_new_url = resize_memory(new_url, new_length, 8);
+
+    printf("New path: %s\n", new_new_url);
 
     return 0;
 }
